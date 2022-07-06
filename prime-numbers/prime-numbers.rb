@@ -1,18 +1,23 @@
 def nth_prime(n)
-  primes = []
-  i = 2
-  until primes.length == n
-    puts "Test number i: #{i}"
-    not_prime = false
-    (2..(i - 1)).each do |j|
-      puts "#{i} % #{j} = #{i % j}"
-      not_prime = true if (i % j).zero?
-      break if not_prime
+  last_prime = 2
+  last_prime_index = 1
+  tested_number = 3
+  until last_prime_index == n
+    # puts "Test number i: #{tested_number}"
+    prime = true
+    (2..(tested_number / 3)).each do |j|
+      # puts "#{tested_number} % #{j} = #{tested_number % j}"
+      prime = !(tested_number % j).zero?
+      break unless prime
     end
-    primes << i unless not_prime
-    i += 1
+    if prime
+      last_prime = tested_number
+      last_prime_index += 1
+      # puts "############################### #{last_prime_index} : #{last_prime} ###############################"
+    end
+    tested_number += 2
   end
-  primes
+  last_prime
 end
 
 require 'prime'
@@ -26,5 +31,13 @@ def using_ruby_features(n)
   prime
 end
 
-# puts nth_prime(10_001).inspect
-puts using_ruby_features(10_001)
+# puts nth_prime(10_001)
+# puts using_ruby_features(10_001)
+
+require 'benchmark'
+
+testing = 1111
+Benchmark.bmbm do |run|
+  run.report { nth_prime(testing) }
+  run.report { using_ruby_features(testing) }
+end
