@@ -1,23 +1,19 @@
 def nth_prime(n)
-  last_prime = 2
-  last_prime_index = 1
+  primes = [2]
   tested_number = 3
-  until last_prime_index == n
-    # puts "Test number i: #{tested_number}"
+  until primes.length == n
     prime = true
-    (2..(tested_number / 3)).each do |j|
-      # puts "#{tested_number} % #{j} = #{tested_number % j}"
-      prime = !(tested_number % j).zero?
+    # half_of_tested_number = tested_number / 3
+    half_of_tested_number = Math.sqrt(tested_number).to_int
+    primes.each do |known_lower_prime|
+      prime = !(tested_number % known_lower_prime).zero?
       break unless prime
+      break if known_lower_prime > half_of_tested_number
     end
-    if prime
-      last_prime = tested_number
-      last_prime_index += 1
-      # puts "############################### #{last_prime_index} : #{last_prime} ###############################"
-    end
+    primes << tested_number if prime
     tested_number += 2
   end
-  last_prime
+  primes.last
 end
 
 require 'prime'
@@ -31,13 +27,28 @@ def using_ruby_features(n)
   prime
 end
 
-# puts nth_prime(10_001)
-# puts using_ruby_features(10_001)
+def using_ruby_features2(n)
+  prime_generator = Prime::TrialDivisionGenerator.new
+  prime = 0
+  (1..n).each do
+    prime = prime_generator.next
+  end
+  prime
+end
+
+testing = 12
+puts "#{testing}. prime: Custom #{nth_prime(testing)} || Prime::EratosthenesGenerator #{using_ruby_features(testing)} || Prime::TrialDivisionGenerator #{using_ruby_features2(testing)}"
+
+testing = 12_112
+puts "#{testing}. prime: Custom #{nth_prime(testing)} || Prime::EratosthenesGenerator #{using_ruby_features(testing)} || Prime::TrialDivisionGenerator #{using_ruby_features2(testing)}"
+
+testing = 52_321
+puts "#{testing}. prime: Custom #{nth_prime(testing)} || Prime::EratosthenesGenerator #{using_ruby_features(testing)} || Prime::TrialDivisionGenerator #{using_ruby_features2(testing)}"
 
 require 'benchmark'
 
-testing = 1111
 Benchmark.bmbm do |run|
-  run.report { nth_prime(testing) }
-  run.report { using_ruby_features(testing) }
+  run.report('Custom:') { nth_prime(10_001) }
+  run.report('Prime::EratosthenesGenerator:') { using_ruby_features(10_001) }
+  run.report('Prime::TrialDivisionGenerator:') { using_ruby_features2(10_001) }
 end
