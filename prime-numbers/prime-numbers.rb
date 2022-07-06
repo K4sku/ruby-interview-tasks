@@ -36,19 +36,25 @@ def using_ruby_features2(n)
   prime
 end
 
+def eratosthenes_sieve(n)
+  Prime::EratosthenesSieve.instance.get_nth_prime(n - 1)
+end
+
 testing = 12
 puts "#{testing}. prime: Custom #{nth_prime(testing)} || Prime::EratosthenesGenerator #{using_ruby_features(testing)} || Prime::TrialDivisionGenerator #{using_ruby_features2(testing)}"
-
+puts eratosthenes_sieve(testing)
 testing = 12_112
 puts "#{testing}. prime: Custom #{nth_prime(testing)} || Prime::EratosthenesGenerator #{using_ruby_features(testing)} || Prime::TrialDivisionGenerator #{using_ruby_features2(testing)}"
-
+puts eratosthenes_sieve(testing)
 testing = 52_321
 puts "#{testing}. prime: Custom #{nth_prime(testing)} || Prime::EratosthenesGenerator #{using_ruby_features(testing)} || Prime::TrialDivisionGenerator #{using_ruby_features2(testing)}"
-
+puts eratosthenes_sieve(testing)
 require 'benchmark'
 
 Benchmark.bmbm do |run|
   run.report('Custom:') { nth_prime(10_001) }
   run.report('Prime::EratosthenesGenerator:') { using_ruby_features(10_001) }
   run.report('Prime::TrialDivisionGenerator:') { using_ruby_features2(10_001) }
+  run.report('Gludek prime') { gludek_prime(10_001) }
+  run.report('EratosthenesSieve') { eratosthenes_sieve(10_001) }
 end
