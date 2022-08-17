@@ -6,6 +6,14 @@ require_relative 'fibonacci_numbers_solver_TDD_optimized'
 inputs = [1, 3, 5, 10, 100, 1_000]
 n = 1000
 
+# task resolution by Gludek
+class GludeksFibonacci
+  def self.find_nth(number, fibonacci = {})
+    return number if [1, 0].include?(number)
+    fibonacci[number] ||= find_nth(number - 1, fibonacci) + find_nth(number - 2, fibonacci)
+  end
+end
+
 Benchmark.bmbm(10) do |x|
   x.report('fibonacci_number_solver:') do
     n.times { inputs.each { |input| FibonacciNumbersGenerator.find_nth(input) } }
@@ -15,6 +23,9 @@ Benchmark.bmbm(10) do |x|
   end
   x.report('fibonacci_numbers_generator_TDD_optimized:') do
     n.times { inputs.each { |input| FibonacciNumbersSolverTDDOptimized.find_nth(input) } }
+  end
+  x.report('Gludeks_fibonacci:') do
+    n.times { inputs.each { |input| GludeksFibonacci.find_nth(input) } }
   end
 end
 
