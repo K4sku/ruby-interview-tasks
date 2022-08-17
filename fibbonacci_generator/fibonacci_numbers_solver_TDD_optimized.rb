@@ -1,4 +1,4 @@
-class FibonacciNumbersGeneratorTDDOptimized
+class FibonacciNumbersSolverTDDOptimized
   def self.find_nth(nth)
     case nth
     when 1

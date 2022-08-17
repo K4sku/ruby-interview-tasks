@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'rspec'
-require_relative 'fibonacci_numbers_generator_TDD_optimized'
+require_relative 'fibonacci_numbers_solver_TDD_optimized'
 
-describe FibonacciNumbersGeneratorTDDOptimized do
+describe FibonacciNumbersSolverTDDOptimized do
   it "finds 1st Fibonacci's number" do
     expect(described_class.find_nth(1)).to eq(1)
   end
