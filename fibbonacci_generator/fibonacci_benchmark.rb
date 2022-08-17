@@ -22,7 +22,7 @@ Benchmark.bmbm(10) do |x|
   x.report('fibonacci_numbers_generator:') do
     n.times { inputs.each { |input| FibonacciNumbersSolver.find_nth(input) } }
   end
-  x.report('fibonacci_numbers_generator_TDD_optimized:') do
+  x.report('fibonacci_numbers_solver_TDD_optimized:') do
     n.times { inputs.each { |input| FibonacciNumbersSolverTDDOptimized.find_nth(input) } }
   end
   x.report('Gludeks_fibonacci:') do
@@ -32,12 +32,14 @@ end
 
 # $ ruby fibonacci_benchmark.rb
 # Rehearsal ------------------------------------------------------------------------------
-# fibonacci_number_solver:                     0.192607   0.000000   0.192607 (  0.192608)
-# fibonacci_numbers_generator:                 0.000525   0.000000   0.000525 (  0.000525)
-# fibonacci_numbers_generator_TDD_optimized:   0.000522   0.000000   0.000522 (  0.000522)
-# --------------------------------------------------------------------- total: 0.193654sec
+# fibonacci_number_solver:                     0.189502   0.000216   0.189718 (  0.189737)
+# fibonacci_numbers_generator:                 0.000565   0.000018   0.000583 (  0.000584)
+# fibonacci_numbers_solver_TDD_optimized:   0.000518   0.000017   0.000535 (  0.000535)
+# Gludeks_fibonacci:                           0.485256   0.003939   0.489195 (  0.489198)
+# --------------------------------------------------------------------- total: 0.680031sec
 
 #                                                  user     system      total        real
-# fibonacci_number_solver:                     0.192691   0.003764   0.196455 (  0.196459)
-# fibonacci_numbers_generator:                 0.000519   0.000000   0.000519 (  0.000518)
-# fibonacci_numbers_generator_TDD_optimized:   0.000509   0.000000   0.000509 (  0.000508)
+# fibonacci_number_solver:                     0.186599   0.000000   0.186599 (  0.186608)
+# fibonacci_numbers_generator:                 0.000575   0.000000   0.000575 (  0.000574)
+# fibonacci_numbers_solver_TDD_optimized:   0.000535   0.000000   0.000535 (  0.000534)
+# Gludeks_fibonacci:                           0.487862   0.000000   0.487862 (  0.487880)
