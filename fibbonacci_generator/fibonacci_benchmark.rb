@@ -10,6 +10,7 @@ n = 1000
 class GludeksFibonacci
   def self.find_nth(number, fibonacci = {})
     return number if [1, 0].include?(number)
+
     fibonacci[number] ||= find_nth(number - 1, fibonacci) + find_nth(number - 2, fibonacci)
   end
 end
