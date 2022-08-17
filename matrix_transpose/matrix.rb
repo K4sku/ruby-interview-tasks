@@ -4,7 +4,7 @@ class Matrix
   end
 
   def transpose
-    matrix = @input.split("\n").map { |row| row.delete(' ') }
+    matrix = @input.delete(' ').split("\n")
     transposed_matrix = Array.new(matrix[0].length) { [] }
 
     matrix.each_with_index do |row, row_index|
