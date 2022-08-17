@@ -34,12 +34,12 @@ end
 # Rehearsal ------------------------------------------------------------------------------
 # fibonacci_number_solver:                     0.189502   0.000216   0.189718 (  0.189737)
 # fibonacci_numbers_generator:                 0.000565   0.000018   0.000583 (  0.000584)
-# fibonacci_numbers_solver_TDD_optimized:   0.000518   0.000017   0.000535 (  0.000535)
+# fibonacci_numbers_solver_TDD_optimized:      0.000518   0.000017   0.000535 (  0.000535)
 # Gludeks_fibonacci:                           0.485256   0.003939   0.489195 (  0.489198)
 # --------------------------------------------------------------------- total: 0.680031sec
 
 #                                                  user     system      total        real
 # fibonacci_number_solver:                     0.186599   0.000000   0.186599 (  0.186608)
 # fibonacci_numbers_generator:                 0.000575   0.000000   0.000575 (  0.000574)
-# fibonacci_numbers_solver_TDD_optimized:   0.000535   0.000000   0.000535 (  0.000534)
+# fibonacci_numbers_solver_TDD_optimized:      0.000535   0.000000   0.000535 (  0.000534)
 # Gludeks_fibonacci:                           0.487862   0.000000   0.487862 (  0.487880)
